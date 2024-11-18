@@ -31,6 +31,7 @@ namespace SFML.HTML.Core.Core
         /// <param name="element">an html element</param>
         private static void DrawElement(BaseHtmlElement element)
         {
+            uiDisplay!.Draw(element.Sprite);
         }
 
     }

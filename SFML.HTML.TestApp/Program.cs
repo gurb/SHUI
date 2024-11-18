@@ -24,13 +24,15 @@ class Program
             }
         });
 
+        SHUI.SetUIState("Base");
+
         window = new RenderWindow(mode, TITLE);
         window.SetVerticalSyncEnabled(true);
         window.SetFramerateLimit(60);
 
         while (window.IsOpen)
         {
-            SHUI.SetUIState(string.Empty);
+           
             // handle events
             window.DispatchEvents();
             SHUI.Update();

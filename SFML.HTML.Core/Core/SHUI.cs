@@ -22,12 +22,13 @@ namespace SFML.HTML.Core.Core
         /// <returns></returns>
         public static async Task Initialize(SHUIConfig config)
         {
-            await InitializeStates(config.States);
-
             renderTexture = new RenderTexture(config.Width, config.Height);
+            renderTexture.Display();
             surface = new Sprite();
             surface.TextureRect = new IntRect(0, 0, (int)config.Width, (int)config.Height);
             surface.Texture = renderTexture.Texture;
+
+            await InitializeStates(config.States);
         }
 
         /// <summary>

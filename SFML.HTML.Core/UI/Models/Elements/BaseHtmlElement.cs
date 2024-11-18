@@ -7,7 +7,7 @@ namespace SFML.HTML.Core.UI.Models.Elements
     public class BaseHtmlElement
     {
         public ElementType ElementType { get; set; } = ElementType.HTML;
-        public Dictionary<PropertType, string> CssProperties { get; set; } = new Dictionary<PropertType, string>();
+        public Dictionary<PropertyType, string> CssProperties { get; set; } = new Dictionary<PropertyType, string>();
         public List<BaseHtmlElement>? Children { get; set; } = new List<BaseHtmlElement>();
         public BaseHtmlElement? Parent { get; set; }
 
@@ -41,7 +41,7 @@ namespace SFML.HTML.Core.UI.Models.Elements
             // override this
         }
 
-        public string? GetCssPropertyValue(PropertType type)
+        public string? GetCssPropertyValue(PropertyType type)
         {
             if(CssProperties.ContainsKey(type))
             {

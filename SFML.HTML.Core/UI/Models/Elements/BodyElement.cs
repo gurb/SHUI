@@ -17,7 +17,7 @@ namespace SFML.HTML.Core.UI.Models.Elements
         {
             CssProperties = new()
             {
-                { PropertType.Background, "white" }
+                { PropertyType.Background, "rgba(255, 255, 255, 255)" }
             };
 
             base.SetDefaultProperties();
@@ -28,7 +28,9 @@ namespace SFML.HTML.Core.UI.Models.Elements
             Sprite = new Sprite();
             Vector2u size = SHUI.GetUIBounds();
             RenderTexture = new RenderTexture(size.X, size.Y);
-            RenderTexture.Clear();
+            var test = GetCssPropertyValue(PropertyType.Background)!;
+            Color color = UIConverter.ConvertCSSColortoSFMLColor(test);
+            RenderTexture.Clear(color);
             RenderTexture.Display();
             Sprite.Position = new Vector2f(0, 0);
             Sprite.Texture = RenderTexture.Texture;

@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace SFML.HTML.Core.UI.Enums
 {
-    public enum PropertType
+    public enum PropertyType
     {
         Background,
         Color,
+        FontSize
     }
 }

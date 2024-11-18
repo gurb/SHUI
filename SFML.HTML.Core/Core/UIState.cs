@@ -1,4 +1,5 @@
 ﻿using SFML.HTML.Core.UI.Models.Elements;
+using SFML.System;
 
 namespace SFML.HTML.Core.Core
 {
@@ -8,6 +9,13 @@ namespace SFML.HTML.Core.Core
         public string HTML { get; set;} = string.Empty;
         public string CSS { get; set;} = string.Empty;
         public List<BaseHtmlElement>? Elements { get; set; }
+
+        public Vector2u? Size { get; set; }
+
+        public UIState()
+        {
+            
+        }
 
         public async Task ReadFile(string htmlPathFile, string cssPathFile)
         {
