@@ -1,33 +1,32 @@
-﻿namespace SFML.HTML.Core.Core
+﻿using SFML.HTML.Core.UI.Models.Elements;
+
+namespace SFML.HTML.Core.Core
 {
     public class UIState
     {
         public string StateName { get; set; } = string.Empty;
         public string HTML { get; set;} = string.Empty;
         public string CSS { get; set;} = string.Empty;
+        public List<BaseHtmlElement>? Elements { get; set; }
 
-        public async Task ReadFile(string PathFile)
+        public async Task ReadFile(string htmlPathFile, string cssPathFile)
         {
             try
             {
-                string replacePath = PathFile.Replace("/", "\\");
-                string path = Path.Combine(Directory.GetCurrentDirectory(), replacePath);
-                using StreamReader reader = new(path);
-                string extension = Path.GetExtension(PathFile);
-                if(extension == ".css")
-                {
-                    CSS = await reader.ReadToEndAsync();
-                    await UIParse.CSSParser(CSS);
-                }
-                else if(extension == ".html")
-                {
-                    HTML = await reader.ReadToEndAsync();
-                    await UIParse.HTMLParser(HTML);
-                }
-            }
-            catch 
-            {
+                htmlPathFile = htmlPathFile.Replace("/", "\\");
+                cssPathFile = cssPathFile.Replace("/", "\\");
+                string htmlPath = Path.Combine(Directory.GetCurrentDirectory(), htmlPathFile);
+                string cssPath = Path.Combine(Directory.GetCurrentDirectory(), cssPathFile);
+                using StreamReader readerHtml = new(htmlPath);
+                using StreamReader readerCss = new(cssPath);
                 
+                HTML = await readerHtml.ReadToEndAsync();
+                CSS = await readerCss.ReadToEndAsync();
+                Elements = await UIParse.GetHtmlElements(HTML, CSS);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }   
         }
     }
